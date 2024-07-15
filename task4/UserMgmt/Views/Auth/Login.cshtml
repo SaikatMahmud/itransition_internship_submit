@@ -1,0 +1,31 @@
+﻿@model LoginVM
+
+<div class="row pt-lg-5">
+    <div class="col-4">
+    </div>
+    <div class="col-4 bg-light">
+        <div class="text-md-center">
+            <h3>Login Form</h3>
+        </div>
+        <form method="post">
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">Email</label>
+                <input type="text" asp-for="Email" class="form-control" placeholder="email" required />
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">Password</label>
+                <input type="password" asp-for="Password" class="form-control" placeholder="password" required />
+            </div>
+
+            <input type="submit" value="Login" class="btn btn-info mb-4" />
+
+        </form>
+        <div class="text-center">
+            <p>Not a User? <a href="/register">Register</a></p>
+        </div>
+    </div>
+    <div class="col-4">
+    </div>
+
+</div>
+

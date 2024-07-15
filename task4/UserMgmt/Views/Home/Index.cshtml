@@ -1,0 +1,83 @@
+﻿@model IEnumerable<UserUserLoginDTO>
+
+<div class="row mx-5">
+    <h2>User Registry</h2>
+    <div class="col-12 text-end">
+        <span>
+            Hi, <b>@Accessor.HttpContext.Request.Cookies["name"]?.ToString()</b>  |
+            <button class="btn btn-outline-secondary border-start-0 border ms-n3" type="button" id="btnLogout">
+                Logout <i class="bi bi-box-arrow-right"></i>
+            </button>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-danger border-start-0 border ms-n3" type="button" id="btnBlock">
+                <i class="bi bi-lock-fill"></i> Block
+            </button>
+            <button class="btn btn-outline-dark border-start-0 border ms-n3" type="button" id="btnUnlock">
+                <i class="bi bi-unlock-fill"></i>
+            </button>
+            <button class="btn btn-outline-dark border-start-0 border ms-n3" type="button" id="btnDelete">
+                <i class="bi bi-trash3-fill"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="row pt-3">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            <input type="checkbox" id="selectAll" />
+                        </th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Last login</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td align="center">
+                                <input type="checkbox" id="selectSingle" name="idSelection" value="@item.Id" />
+                            </td>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+                            <td>@item.UserLogin.LastLogin</td>
+                            <td>@item.UserStatus</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#selectAll").click(function () {
+                $('input:checkbox').prop('checked', $(this).prop('checked'));
+            });
+            $('#btnLogout').click(function () {
+                window.location.href = '/logout';
+            });
+            $('#btnBlock').click(function () {
+                blockUsers();
+            });
+            $('#btnUnlock').click(function () {
+                unblockUsers();
+            });
+            $('#btnDelete').click(function () {
+                deleteUsers();
+            });
+        });
+    </script>
+    <script src="~/js/modifyUser.js"></script>
+}
