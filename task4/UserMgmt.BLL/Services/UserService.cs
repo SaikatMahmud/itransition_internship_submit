@@ -40,7 +40,7 @@ namespace UserMgmt.BLL.Services
         {
             errorMsg = string.Empty;
             var exixtingUser = DataAccess.User.Get(u => u.Email == obj.Email);
-            if(exixtingUser != null)
+            if (exixtingUser != null)
             {
                 if (exixtingUser.UserStatus != "Active") { errorMsg = "Your email is currently blocked!"; return false; }
                 errorMsg = "Email already exists!"; return false;
@@ -52,7 +52,8 @@ namespace UserMgmt.BLL.Services
                 CreatedAt = DateTime.Now,
                 UserStatus = "Active"
             };
-            user = DataAccess.User.Create(user);
+            user = DataAccess.User.Create(user, out errorMsg);
+            if (user == null) return false;
             var userLogin = new UserLogin()
             {
                 UserId = user.Id,

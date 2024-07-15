@@ -9,7 +9,7 @@ namespace UserMgmt.DAL.Interfaces
 {
     public interface IUser : IRepo<User>
     {
-        User Create(User obj);
+        User Create(User obj, out string errorMsg);
         bool DeleteRange(IEnumerable<User> obj);
     }
 }
