@@ -12,8 +12,8 @@ using UserMgmt.DAL;
 namespace UserMgmt.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240714091855_TokenRemoved")]
-    partial class TokenRemoved
+    [Migration("20240715112113_DBcreate")]
+    partial class DBcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
