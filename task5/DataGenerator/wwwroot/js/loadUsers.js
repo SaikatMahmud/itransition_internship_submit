@@ -70,6 +70,7 @@ function GenerateSeed() {
 }
 function LoadUsers() {
     pageNumber = 1;
+    gotToServer = true;
     datatable = $('#tblData').DataTable({
         "processing": true,
         "searching": false,
