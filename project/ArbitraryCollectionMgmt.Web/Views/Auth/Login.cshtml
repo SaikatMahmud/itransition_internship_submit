@@ -1,0 +1,26 @@
+﻿@model LoginVM
+<div class="row pt-lg-5">
+    <div class="col-4">
+    </div>
+    <div class="col-4 border border-primary bg-gradient p-4" style="border-radius: 0.3rem;">
+        <div class="text-md-center">
+            <h3 data-en="Login Form" data-bn="লগইন ফর্ম"></h3>
+        </div>
+        <form method="post">
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold" data-en="Email" data-bn="ইমেইল">Email</label>
+                <input type="text" asp-for="Email" class="form-control" placeholder="email" required />
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold" data-en="Password" data-bn="পাসওয়ার্ড"></label>
+                <input type="password" asp-for="Password" class="form-control" placeholder="password" required />
+            </div>
+
+            <input type="submit" data-en="Login" data-bn="লগইন" class="btn btn-info mb-4" />
+
+        </form>
+        <div class="text-center">
+            <a href="/register"><p data-en="Not a User? Register" data-bn="ইউজার নয়? রেজিস্টার করুন"></p></a>
+        </div>
+    </div>
+</div>

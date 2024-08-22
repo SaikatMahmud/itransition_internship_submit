@@ -1,0 +1,149 @@
+﻿@model ViewItemVM
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient text-light py-4">
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-9">
+                <div class="row">
+                    <p>
+                        <span class="fw-bold text-muted">Item name:</span>
+                        <span>@Model.Item.Name</span>
+                    </p>
+                </div>
+                @if (Model.Item.CustomValues != null && Model.Item.CustomValues.Count() > 0)
+                {
+                    foreach (var field in Model.Item.CustomValues)
+                    {
+                        if (!string.IsNullOrEmpty(field.FieldValue) || field.CustomAttribute.FieldType == SD.FieldType.Checkbox)
+                        {
+                            @if (field.CustomAttribute.FieldType == SD.FieldType.Single_line_text && !string.IsNullOrEmpty(field.FieldValue))
+                            {
+                                <div class="row pl-2">
+                                    <p>
+                                        <span class="fw-bold text-muted">@field.CustomAttribute.FieldName:</span>
+                                        <span class="lh-sm">@field.FieldValue</span>
+                                    </p>
+                                </div>
+                            }
+                            else if (field.CustomAttribute.FieldType == SD.FieldType.Number && !string.IsNullOrEmpty(field.FieldValue))
+                            {
+                                <div class="row pl-2">
+                                    <p>
+                                        <span class="fw-bold text-muted">@field.CustomAttribute.FieldName:</span>
+                                        <span class="lh-sm">@field.FieldValue</span>
+                                    </p>
+                                </div>
+                            }
+                            else if (field.CustomAttribute.FieldType == SD.FieldType.Date && !string.IsNullOrEmpty(field.FieldValue))
+                            {
+                                if (DateTime.TryParse(field.FieldValue, out DateTime dateTime))
+                                {
+                                    <div class="row pl-2">
+                                        <p>
+                                            <span class="fw-bold text-muted">@field.CustomAttribute.FieldName:</span>
+                                            <span class="lh-sm">@dateTime.ToString("yyyy-MM-dd")</span>
+                                        </p>
+                                    </div>
+                                }
+                            }
+                            else if (field.CustomAttribute.FieldType == SD.FieldType.Text && !string.IsNullOrEmpty(field.FieldValue))
+                            {
+                                <div class="row pl-2">
+                                    <p>
+                                        <div class="col-auto">
+                                            <span class="fw-bold text-muted">@field.CustomAttribute.FieldName:</span>
+                                        </div>
+                                        <div class="col-auto" style="margin-left:-1rem;">
+                                            <span class="lh-sm">@Html.Raw(field.FieldValue)</span>
+                                        </div>
+                                    </p>
+                                </div>
+                            }
+                            else if (field.CustomAttribute.FieldType == SD.FieldType.Checkbox)
+                            {
+                                <div class="row pl-2">
+                                    <p>
+                                        @if (field.FieldValue == "1")
+                                        {
+                                            <span class="text-secondary lh-sm"><i class="bi bi-check-circle-fill text-success"></i> @field.CustomAttribute.FieldName</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-secondary lh-sm"><i class="bi bi-x-circle-fill text-danger"></i> @field.CustomAttribute.FieldName</span>
+                                        }
+                                    </p>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <p>
+                        <span class="fw-bold text-muted">Collection:</span>
+                        <span><a href="/item/collection/@Model.Collection.CollectionId"> @Model.Collection.Name </a></span>
+                    </p>
+                </div>
+                <div class="row">
+                    <p>
+                        <span class="fw-bold text-muted">Owner:</span>
+                        <span> <a href="/collection/user/@Model.Collection.User.UserId"> @Model.Collection.User.Name </a></span>
+                    </p>
+                </div>
+                <div class="row">
+                    <p>
+                        <span class="fw-bold text-muted">Created:</span>
+                        <span>@Model.Item.CreatedAt?.ToString("yyyy-MM-dd, hh:mm tt")</span>
+                    </p>
+                </div>
+                <div class="row">
+                    <p>
+                        <span class="fw-bold text-muted">Last update:</span>
+                        <span> @Model.Item.UpdatedAt?.ToString("yyyy-MM-dd, hh:mm tt")</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.ItemTags != null && Model.ItemTags.Count() > 0)
+            {
+                <p>
+                    <span class="fw-bold text-muted">Tags:</span>
+                    @foreach (var tag in Model.ItemTags)
+                    {
+                        <span class="badge bg-light text-dark"
+                              style="border: 1px solid #ccc; padding : 2px 5px; margin : 2px; display : inline-block; border-radius : 3px;">
+                            @tag.Tag.Name
+                        </span>
+                    }
+                </p>
+            }
+        </div>
+
+
+        <div class="d-flex justify-content-center">
+            <span>
+                <button type="button" class="btn btn-info" id="btnLike" onclick="AddLike(@Model.Item.ItemId)" style="display: none;"><i class="bi bi-hand-thumbs-up"></i> Like</button>
+                <button type="button" class="btn btn-info" id="btnRemoveLike" onclick="RemoveLike(@Model.Item.ItemId)" style="display: none;"><i class="bi bi-hand-thumbs-up-fill"></i> Liked</button>
+            </span>
+        </div>
+        <div class="d-flex justify-content-center mt-2">
+            <span class="input-group w-50" id="commentInputSpan" style="display: none;">
+                <input type="text" class="form-control" placeholder="add a comment" id="commentInput" />
+                <button type="button" class="btn btn-info" id="btnAddComment" onclick="AddComment(@Model.Item.ItemId)"><i class="bi bi-send"></i></button>
+            </span>
+        </div>
+
+    </div>
+</div>
+
+<div class="d-flex flex-column align-items-center mt-3" id="commentsArea">
+    <span class="text-muted" id="noCommentsText" style="display: none;">No comments yet!</span>
+</div>
+
+
+<script src="~/js/item/manageLikeComment.js"></script>
+<script src="~/js/signalr/signalr.js"></script>
