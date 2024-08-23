@@ -7,10 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="Areas\Guest\Views\Item\AllItem_Guest.cshtml" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
@@ -23,10 +19,6 @@
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.3" />
 		<ProjectReference Include="..\ArbitraryCollectionMgmt.BLL\ArbitraryCollectionMgmt.BLL.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="Areas\Guest\Views\Item\AllItem_Guest.cshtml" />
 	</ItemGroup>
 
 </Project>
