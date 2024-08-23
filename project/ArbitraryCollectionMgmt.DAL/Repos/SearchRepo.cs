@@ -42,5 +42,14 @@ namespace ArbitraryCollectionMgmt.DAL.Repos
             }
             return searchResult;
         }
+
+        public SearchResult GetItemWithMatchedTag(int tagId)
+        {
+            var items = _db.Items.Where(i => i.ItemTags.Any(it => it.TagId == tagId)).ToList();
+            return new SearchResult()
+            {
+                Items = items,
+            };
+        }
     }
 }

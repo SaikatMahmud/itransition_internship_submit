@@ -9,7 +9,16 @@
     }
 </style>
 
-<h3>Search result for "@ViewBag.SearchQuery"</h3>
+@if (!string.IsNullOrEmpty(ViewBag.SearchTagName))
+{
+    <h3>Items with [@ViewBag.SearchTagName]</h3>
+
+}
+else
+{
+    <h3>Search result for "@ViewBag.SearchQuery"</h3>
+}
+
 
 <div>
     @* ***********************  Items  ******************@

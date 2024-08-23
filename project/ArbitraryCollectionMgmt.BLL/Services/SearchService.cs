@@ -22,7 +22,7 @@ namespace ArbitraryCollectionMgmt.BLL.Services
         {
             if (string.IsNullOrEmpty(searchQuery)) return null;
             var data = DataAccess.Search.GetSearchResult(searchQuery);
-            if (data == null) return null;
+            if (data == null) return new SearchResultDTO();
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<SearchResult, SearchResultDTO>();
@@ -34,5 +34,20 @@ namespace ArbitraryCollectionMgmt.BLL.Services
             var mapper = new Mapper(cfg);
             return mapper.Map<SearchResultDTO>(data);
         }
+
+        public SearchResultDTO GetSearchResultForTag(int tagId)
+        {
+            if (tagId == 0) return new SearchResultDTO();
+            var data = DataAccess.Search.GetItemWithMatchedTag(tagId);
+            if (data == null) return new SearchResultDTO();
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<SearchResult, SearchResultDTO>();
+                c.CreateMap<Item, ItemDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            return mapper.Map<SearchResultDTO>(data);
+        }
+
     }
 }

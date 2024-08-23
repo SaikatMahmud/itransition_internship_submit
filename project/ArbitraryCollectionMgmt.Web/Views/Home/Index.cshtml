@@ -1,7 +1,17 @@
 ﻿@model HomepageVM
 
-<h3>Homepage</h3>
+<style>
+    #tag-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
 
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@yaireo/tagify/dist/tagify.css" type="text/css" />
+
+<h3>Homepage</h3>
 <div>
     <div class="d-flex flex-column align-items-center mt-3">
         <h5 class="text-muted text-decoration-underline">Recently added items</h5>
@@ -30,7 +40,7 @@
                             </tr>
                         }
                     </tbody>
-                </table>                  
+                </table>
             </div>
         }
         else
@@ -70,10 +80,13 @@
         }
     </div>
 
-
     <div class="d-flex flex-column align-items-center mt-3">
         <h5 class="text-muted text-decoration-underline">Tags</h5>
-        <span class="text-danger h6">This tag section will be done by this weekend (before project defence)</span>
+        <input name="tags" value="" class="form-control w-25 mb-2" placeholder="select one below or start typing...">
+        <div id="tag-grid"></div>
     </div>
 
 </div>
+
+<script src="~/js/homepageTagCloud.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@@yaireo/tagify"></script>

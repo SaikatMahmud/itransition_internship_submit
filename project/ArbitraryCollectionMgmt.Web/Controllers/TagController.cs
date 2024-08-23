@@ -3,12 +3,12 @@ using ArbitraryCollectionMgmt.BLL.DTOs;
 using ArbitraryCollectionMgmt.BLL.ServiceAccess;
 using ArbitraryCollectionMgmt.BLL.Services;
 using ArbitraryCollectionMgmt.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ArbitraryCollectionMgmt.Web.Controllers
 {
-    [UserAccess]
     public class TagController : Controller
     {
         private TagService tagService;
@@ -18,17 +18,20 @@ namespace ArbitraryCollectionMgmt.Web.Controllers
             tagService = serviceAccess.TagService;
             itemTagService = serviceAccess.ItemTagService;
         }
+
+        [UserAccess]
         [HttpGet]
-        public IActionResult GetMatch(string search)
+        public JsonResult GetMatch(string search)
         {
             var tag = tagService.GetMatchedTags(search);
             //return Json(new { data = tag });
             return Json(tag);
         }
 
+        [UserAccess]
         [HttpDelete]
         [Route("ItemTag/Delete/{id}")]
-        public IActionResult DeleteItemTag(int id)
+        public JsonResult DeleteItemTag(int id)
         {
             var result = itemTagService.DeleteItemTag(id);
             if (result)
@@ -37,6 +40,16 @@ namespace ArbitraryCollectionMgmt.Web.Controllers
             }
             return Json(new { success = false });
         }
- 
+
+        [HttpGet]
+        [Route("tag/get-all")]
+        public JsonResult GetAllTag()
+        {
+            var result = tagService.GetAll();
+            return Json(new { success = true, data = result});
+        }
+
+
+
     }
 }

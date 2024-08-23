@@ -33,5 +33,17 @@ namespace ArbitraryCollectionMgmt.BLL.Services
             var mapper = new Mapper(cfg);
             return mapper.Map<List<TagDTO>>(data);
         }
+
+        public List<TagDTO> GetAll()
+        {
+            var data = DataAccess.Tag.GetAll();
+            if (data == null) return null;
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Tag, TagDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            return mapper.Map<List<TagDTO>>(data);
+        }
     }
 }
