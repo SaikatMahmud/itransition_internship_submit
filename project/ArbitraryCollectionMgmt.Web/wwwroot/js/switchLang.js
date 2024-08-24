@@ -20,16 +20,6 @@ async function fetchLanguageData(lang) {
 function updateContent(langData) {
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        //const textNode = Array.from(element.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
-        /*if (textNode) {
-            textNode.textContent = langData[key];
-        } else {
-            if (element.tagName === 'INPUT') {
-                element.value = langData[key];
-            } else {
-                element.textContent = langData[key];
-            }
-        }*/
         if (element.tagName === 'INPUT') {
             element.value = langData[key];
         } else {
