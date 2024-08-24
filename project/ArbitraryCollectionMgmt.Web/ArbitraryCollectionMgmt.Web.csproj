@@ -21,4 +21,11 @@
 		<ProjectReference Include="..\ArbitraryCollectionMgmt.BLL\ArbitraryCollectionMgmt.BLL.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Update="wwwroot\js\switchLang.js">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
+
 </Project>

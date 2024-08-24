@@ -19,17 +19,19 @@
 });
 
 function startCloud(tagData) {
-    var tagGrid = document.getElementById('tag-grid');
+    var tagGrid = document.getElementById('tag-grid');  
     var input = document.querySelector('input[name=tags]');
 
 
     var tagify = new Tagify(input, {
+        enforceWhitelist: true,
         whitelist: tagData.map(tag => ({ value: tag.name, id: tag.tagId })),
         maxTags: 1,
     });
     tagify.on('add', function (e) {
         var selectedTagId = e.detail.data.id;
         var selectedTagName = e.detail.data.value;
+        tagify.removeAllTags();
         window.location.href = `/Search/SearchResult?searchTag=${selectedTagId}_${selectedTagName}`;
     });
 

@@ -4,23 +4,27 @@
     </div>
     <div class="col-4 border border-primary bg-gradient p-4" style="border-radius: 0.3rem;">
         <div class="text-md-center">
-            <h3 data-en="Login" data-bn="লগইন"></h3>
+            @* <h3 data-i18n="login">Login <i class="bi bi-door-open"></i></h3> *@
+            <h3><i class="bi bi-door-open"></i> <span data-i18n="login"></span></h3>
         </div>
         <form method="post">
             <div data-mdb-input-init class="form-outline mb-4">
-                <label class="fw-bold" data-en="Email" data-bn="ইমেইল">Email</label>
+                <label class="fw-bold" data-i18n="email"></label>
                 <input type="text" asp-for="Email" class="form-control" placeholder="email" required />
             </div>
             <div data-mdb-input-init class="form-outline mb-4">
-                <label class="fw-bold" data-en="Password" data-bn="পাসওয়ার্ড"></label>
+                <label class="fw-bold" data-i18n="password"></label>
                 <input type="password" asp-for="Password" class="form-control" placeholder="password" required />
             </div>
 
-            <input type="submit" data-en="Login" data-bn="লগইন" class="btn btn-info mb-4" />
+            <input type="submit" data-i18n="login" class="btn btn-info mb-4" />
 
         </form>
         <div class="text-center">
-            <a href="/register"><p data-en="Not a User? Register" data-bn="ইউজার নয়? রেজিস্টার করুন"></p></a>
+            <p>
+                <span data-i18n="not_a_user"></span>
+                <a href="/register"><span data-i18n="register"></span></a>
+            </p>
         </div>
     </div>
 </div>
