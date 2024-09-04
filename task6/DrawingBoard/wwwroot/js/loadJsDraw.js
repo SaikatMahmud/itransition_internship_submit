@@ -4,6 +4,9 @@ var boardId;
 var username;
 
 $(document).ready(function () {
+    var pathname = window.location.pathname;
+    boardId = pathname.split('/').pop();
+
     Swal.fire({
         title: "Whats you name?",
         input: "text",
@@ -19,6 +22,7 @@ $(document).ready(function () {
         if (result.value) {
             username = result.value;
             startDrawing();
+            startCommentConnection(boardId);
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             window.location.href = "/";
         }
@@ -26,9 +30,6 @@ $(document).ready(function () {
 });
 
 function startDrawing() {
-    var pathname = window.location.pathname;
-    boardId = pathname.split('/').pop();
-
     const settings = {
         wheelEventsEnabled: 'only-if-focused',
     };
@@ -39,11 +40,18 @@ function startDrawing() {
         editor.remove();
         window.location.href = "/";
     });
-    toolbar.addActionButton('Download', () => {
+
+    toolbar.addActionButton('|Sync|', () => {
+        editor.remove();
+        startDrawing();
+    });
+
+    toolbar.addActionButton('|Download|', () => {
         var jpgDataUrl = editor.toDataURL();
         console.log(jpgDataUrl);
         download(jpgDataUrl, `drawing-${boardId}.jpg`);
     });
+
 
     editor.getRootElement().style.height = '95vh';
     editor.getRootElement().style.border = '2px solid gray';
@@ -55,7 +63,6 @@ function startDrawing() {
     }), addToHistory);
 
     getExistingSvg();
-    startCommentConnection(boardId);
 
     editor.notifier.on(jsdraw.EditorEventType.CommandDone, (evt) => {
         if (evt.kind !== jsdraw.EditorEventType.CommandDone) {
