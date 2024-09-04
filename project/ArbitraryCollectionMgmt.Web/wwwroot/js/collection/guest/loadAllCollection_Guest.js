@@ -2,7 +2,6 @@
 var categoryId = 0;
 var columnNames = ['CollectionId', 'Name', 'CategoryId'];
 $(document).ready(function () {
-    console.log("LoadAllCollection_Guest.js");
     $('#categoryId').change(function () {
         $('#customFilter').val("all");
         categoryId = $('#categoryId').val();

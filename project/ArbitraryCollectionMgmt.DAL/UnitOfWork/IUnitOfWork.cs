@@ -21,5 +21,6 @@ namespace ArbitraryCollectionMgmt.DAL.UnitOfWork
         IUser User { get; }
         IUserLogin UserLogin { get; }
         ISearch Search { get; }
+        IApiToken ApiToken { get; }
     }
 }

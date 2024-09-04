@@ -4,6 +4,7 @@ using ArbitraryCollectionMgmt.DAL;
 using Microsoft.EntityFrameworkCore;
 using ArbitraryCollectionMgmt.BLL.Hubs;
 using Microsoft.AspNetCore.SignalR;
+using ArbitraryCollectionMgmt.Web.Clients;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IBusinessService, BusinessService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddSingleton<SalesforceClient>();
+builder.Services.AddSingleton<JiraClient>();
 
 builder.Services.AddHttpContextAccessor();
 

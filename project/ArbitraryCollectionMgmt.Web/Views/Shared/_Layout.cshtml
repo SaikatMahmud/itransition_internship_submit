@@ -86,6 +86,26 @@
                             <button type="submit" class="btn border mx-1"><i class="bi bi-search"></i></button>
                         </form>
                     </li>
+                    @if (!string.IsNullOrEmpty(@Accessor.HttpContext.Request.Cookies["username"]?.ToString()))
+                    {
+
+                        <li class="nav-item dropdown">
+                            <button class="nav-link dropdown-toggle btn mx-1" data-bs-toggle="dropdown">
+                                        Welcome, <b>@Accessor.HttpContext.Request.Cookies["username"]?.ToString()</b>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="/sf/add-my-data">Salesforce</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="/my-tickets">My tickets</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="/api-token">Api Token</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
                     <li class="nav-item">
                         <button class="btn mx-1 switchlang" id='enBtn' value="en" style="display: none;">En</button>
                         <button class="btn mx-1 switchlang" id='bnBtn' value="bn" style="display: none;">বাং</button>
@@ -109,7 +129,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - Saikat Mahmud (saikat8486@gmail.com) [Project]
+            &copy; 2024 - Saikat Mahmud (saikat8486@gmail.com) [Project] &nbsp;
+            <a href="/create-support-ticket">Help</a>
         </div>
     </footer>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

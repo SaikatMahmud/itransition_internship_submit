@@ -4,6 +4,7 @@ using ArbitraryCollectionMgmt.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArbitraryCollectionMgmt.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240903220035_ApiToken_table")]
+    partial class ApiToken_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,14 +27,9 @@ namespace ArbitraryCollectionMgmt.DAL.Migrations
 
             modelBuilder.Entity("ArbitraryCollectionMgmt.DAL.Models.ApiToken", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("TokenKey")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsRevoked")
                         .HasColumnType("bit");
@@ -39,17 +37,10 @@ namespace ArbitraryCollectionMgmt.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TokenKey")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("TokenKey")
-                        .IsUnique();
+                    b.HasKey("TokenKey");
 
                     b.HasIndex("UserId");
 

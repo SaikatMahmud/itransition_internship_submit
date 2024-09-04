@@ -20,5 +20,6 @@ namespace ArbitraryCollectionMgmt.BLL.ServiceAccess
         public CommentService CommentService { get; set; }
         public SearchService SearchService { get; set; }
         public HomepageService HomepageService { get; set; }
+        public ApiTokenService ApiTokenService { get; set; }
     }
 }

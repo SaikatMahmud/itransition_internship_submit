@@ -22,6 +22,7 @@ namespace ArbitraryCollectionMgmt.BLL.ServiceAccess
         public LikeService LikeService { get; set; }
         public SearchService SearchService { get; set; }
         public HomepageService HomepageService { get; set; }
+        public ApiTokenService ApiTokenService { get; set; }
 
 
         public BusinessService(IUnitOfWork unitOfWork)
@@ -37,6 +38,7 @@ namespace ArbitraryCollectionMgmt.BLL.ServiceAccess
             LikeService = new LikeService(unitOfWork);
             SearchService = new SearchService(unitOfWork);
             HomepageService = new HomepageService(unitOfWork);
+            ApiTokenService = new ApiTokenService(unitOfWork);
         }
     }
 }

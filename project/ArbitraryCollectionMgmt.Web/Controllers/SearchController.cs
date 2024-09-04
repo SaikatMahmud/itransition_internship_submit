@@ -27,7 +27,8 @@ namespace ArbitraryCollectionMgmt.Web.Controllers
             if (string.IsNullOrEmpty(searchQ))
             {
                 TempData["error"] = "Please enter search keywords!";
-                return Redirect(Request.Headers["Referer"].ToString());
+                //return Redirect(Request.Headers["Referer"].ToString());
+                return Redirect(Request.Headers.Referer.ToString());
             }
             var result = searchService.GetSearchResult(searchQ);
             ViewBag.SearchQuery = searchQ;

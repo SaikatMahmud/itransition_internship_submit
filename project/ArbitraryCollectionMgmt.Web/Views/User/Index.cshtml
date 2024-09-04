@@ -37,6 +37,7 @@
                         <th>Email</th>
                         <th>Role</th>
                         <th>Status</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,11 @@
                             <td>@user.Email</td>
                             <td>@(user.IsAdmin ? SD.Role.Admin : SD.Role.User)</td>
                             <td>@user.UserStatus</td>
+                            <td>
+                                <button class="btn btn-success" onclick="location.href='/admin/sf/add-user-data/@user.UserId'">
+                                    <i class="bi bi-cloud-plus"></i> Salesforce
+                                    </button>
+                            </td>
                         </tr>
                     }
                 </tbody>

@@ -24,6 +24,9 @@ namespace ArbitraryCollectionMgmt.DAL
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserLogin> UserLogins { get; set; }
+        public DbSet<ApiToken> ApiTokens { get; set; }
+
+
 
     }
 }

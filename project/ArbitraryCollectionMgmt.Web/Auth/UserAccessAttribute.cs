@@ -11,7 +11,7 @@ namespace ArbitraryCollectionMgmt.Auth
 {
     public class UserAccessAttribute : TypeFilterAttribute
     {
-        public UserAccessAttribute(string? role = "") : base(typeof(TokenFilter))
+        public UserAccessAttribute(string? role = "") : base(typeof(JwtFilter))
         {
            Arguments = [role];
         }

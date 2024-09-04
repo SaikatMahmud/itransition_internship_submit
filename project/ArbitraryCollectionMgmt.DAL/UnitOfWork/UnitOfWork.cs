@@ -26,6 +26,7 @@ namespace ArbitraryCollectionMgmt.DAL.UnitOfWork
         public ILike Like { get; private set; }
         public IComment Comment { get; private set; }
         public ISearch Search { get; private set; }
+        public IApiToken ApiToken { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext db)
@@ -43,6 +44,7 @@ namespace ArbitraryCollectionMgmt.DAL.UnitOfWork
             Like = new LikeRepo(_db);
             Comment = new CommentRepo(_db);
             Search = new SearchRepo(_db);
+            ApiToken = new ApiTokenRepo(_db);
         }
     }
 }

@@ -12,14 +12,14 @@ using ArbitraryCollectionMgmt.Web.Models;
 
 namespace ArbitraryCollectionMgmt.Auth
 {
-    public class TokenFilter : IAuthorizationFilter
+    public class JwtFilter : IAuthorizationFilter
     {
         private readonly IConfiguration _configuration;
         private AuthService authService;
         private bool isAdminRequired = false;
         private bool isAdmin = false;
 
-        public TokenFilter(string? _role, IConfiguration configuration, IBusinessService businessService)
+        public JwtFilter(string? _role, IConfiguration configuration, IBusinessService businessService)
         {
             _configuration = configuration;
             authService = businessService.AuthService;

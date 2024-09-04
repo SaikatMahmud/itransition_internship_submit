@@ -10,6 +10,7 @@ using ArbitraryCollectionMgmt.BLL.ServiceAccess;
 using ArbitraryCollectionMgmt.BLL.Services;
 using ArbitraryCollectionMgmt.BLL.ViewModels;
 using ArbitraryCollectionMgmt.Web.Models;
+using ArbitraryCollectionMgmt.Web.Clients;
 
 namespace ArbitraryCollectionMgmt.Web.Controllers
 {
@@ -47,7 +48,7 @@ namespace ArbitraryCollectionMgmt.Web.Controllers
 
             if (token != null)
             {
-                SaveTokenAsCookie(token, role);
+                SaveTokenAsCookie(token, role, user.Name);
                 TempData["success"] = "Login successfully";
                 if (!string.IsNullOrEmpty(ReturnUrl))
                 {
@@ -82,7 +83,7 @@ namespace ArbitraryCollectionMgmt.Web.Controllers
             return jwt;
         }
 
-        private void SaveTokenAsCookie(string token, string role)
+        private void SaveTokenAsCookie(string token, string role, string name)
         {
             var cookieOptions = new CookieOptions
             {
@@ -93,6 +94,7 @@ namespace ArbitraryCollectionMgmt.Web.Controllers
             };
             HttpContext.Response.Cookies.Append("access-Token", token, cookieOptions);
             HttpContext.Response.Cookies.Append("role", role, cookieOptions);
+            HttpContext.Response.Cookies.Append("username", name, cookieOptions);
             return;
         }
 
@@ -103,6 +105,7 @@ namespace ArbitraryCollectionMgmt.Web.Controllers
             HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity());
             HttpContext.Response.Cookies.Delete("access-Token");
             HttpContext.Response.Cookies.Delete("role");
+            HttpContext.Response.Cookies.Delete("username");
             return RedirectToAction("Login");
         }
 

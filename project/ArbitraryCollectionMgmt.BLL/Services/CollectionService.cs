@@ -20,7 +20,29 @@ namespace ArbitraryCollectionMgmt.BLL.Services
         {
             DataAccess = _dataAccess;
         }
-      
+
+        public UserCollectionDataDTO GetUserCollectionData(int userId) // created for API
+        {
+            var data = DataAccess.Collection.GetAll(c => c.UserId == userId, "Category, Items, User");
+            if (data == null) return null;
+            var userCollectionData = new UserCollectionDataDTO();
+            userCollectionData.Owner = data.FirstOrDefault().User.Name;
+            userCollectionData.Collections = new List<CollectionData>();
+            foreach (var collection in data)
+            {
+                var collectionData = new CollectionData()
+                {
+                    Name = collection.Name,
+                    Description = collection.Description,
+                    ItemCount = collection.Items.Count(),
+                    Category = collection.Category.Name
+                };
+                userCollectionData.Collections.Add(collectionData);
+            }
+            return userCollectionData;
+
+        }
+
         public CollectionCustomAttributeDTO Get(Expression<Func<CollectionDTO, bool>> filter, string? properties = null)
         {
             var cfg = new MapperConfiguration(c =>
