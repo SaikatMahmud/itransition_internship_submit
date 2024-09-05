@@ -27,6 +27,7 @@ function startCloud(tagData) {
         enforceWhitelist: true,
         whitelist: tagData.map(tag => ({ value: tag.name, id: tag.tagId })),
         maxTags: 1,
+        addTagOnBlur: false
     });
     tagify.on('add', function (e) {
         var selectedTagId = e.detail.data.id;

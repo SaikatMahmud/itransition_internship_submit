@@ -4,6 +4,7 @@ using ArbitraryCollectionMgmt.BLL.Services;
 using ArbitraryCollectionMgmt.Web.Clients;
 using ArbitraryCollectionMgmt.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.Security.Claims;
 
@@ -35,10 +36,15 @@ namespace ArbitraryCollectionMgmt.Web.Controllers
 
         [HttpPost, UserAccess]
         [Route("sf/add-my-data")]
-        public IActionResult CreateSaleforceAccount(SalesforceAccount sfAccount)
+        public async Task<IActionResult> CreateSaleforceAccount(SalesforceAccount sfAccount)
         {
-            var response = salesforceClient.CreateAccount(sfAccount);
-            TempData["success"] = "Account created successfully";
+            var response = await salesforceClient.CreateAccount(sfAccount);
+            if(string.IsNullOrEmpty(response))
+            {
+                TempData["error"] = "Failed to add data. Try again later!";
+                return Redirect("/sf/add-my-data");
+            }
+            TempData["success"] = "Data added successfully";
             return Redirect("/");
         }
 
@@ -61,10 +67,14 @@ namespace ArbitraryCollectionMgmt.Web.Controllers
 
         [HttpPost, UserAccess(SD.Role.Admin)]
         [Route("admin/sf/add-user-data/{userId}")]
-        public IActionResult AdminCreateSaleforceAccount(SalesforceAccount sfAccount)
+        public async Task<IActionResult> AdminCreateSaleforceAccount(SalesforceAccount sfAccount)
         {
-            var response = salesforceClient.CreateAccount(sfAccount);
-            TempData["success"] = "Account created successfully";
+            var response = await salesforceClient.CreateAccount(sfAccount);
+            if (string.IsNullOrEmpty(response))
+            {
+                TempData["error"] = "Failed to add data. Try again later!";
+            }
+            else TempData["success"] = "Account created successfully";
             return Redirect("/admin/manage-user");
         }
 

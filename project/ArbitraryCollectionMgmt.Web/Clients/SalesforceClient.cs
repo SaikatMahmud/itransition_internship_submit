@@ -61,16 +61,48 @@ namespace ArbitraryCollectionMgmt.Web.Clients
         public async Task<string> CreateAccount(SalesforceAccount obj)
         {
             await GetAccessToken();
-            string json = JsonSerializer.Serialize(obj);
+            //string json = JsonSerializer.Serialize(obj);
+
+            string jsonString = $@"
+                                {{
+                                    ""allOrNone"": true,
+                                    ""compositeRequest"": [
+                                        {{
+                                            ""method"": ""POST"",
+                                            ""url"": ""{ApiEndpoint}/sobjects/Account/"",
+                                            ""referenceId"": ""NewAccount"",
+                                            ""body"": {{
+                                                ""Name"": ""{obj.Name}""
+                                            }}
+                                        }},
+                                        {{
+                                            ""method"": ""POST"",
+                                            ""url"": ""{ApiEndpoint}/sobjects/Contact"",
+                                            ""referenceId"": ""newContact"",
+                                            ""body"": {{
+                                                ""FirstName"": ""{obj.Name}"",
+                                                ""LastName"": ""{obj.Name}"",
+                                                ""MobilePhone"": ""{obj.MobilePhone}"",
+                                                ""Email"": ""{obj.Email}"",
+                                                ""MailingStreet"": ""{obj.MailingStreet}"",
+                                                ""MailingCity"": ""{obj.MailingCity}"",
+                                                ""MailingCountry"": ""{obj.MailingCountry}"",
+                                                ""AccountId"": ""@{{NewAccount.id}}""
+                                            }}
+                                        }}
+                                    ]
+                                }}";
+
             using (var client = new HttpClient())
             {
-                HttpContent createdContent = new StringContent(json, Encoding.UTF8, "application/json");
-                string uri = $"{InstanceUrl}{ApiEndpoint}/sobjects/Account";
+                HttpContent createdContent = new StringContent(jsonString, Encoding.UTF8, "application/json");
+                string uri = $"{InstanceUrl}{ApiEndpoint}/composite";
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, uri);
                 request.Headers.Add("Authorization", "Bearer " + AuthToken);
                 request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
                 request.Content = createdContent;
                 HttpResponseMessage response = client.SendAsync(request).Result;
+                response.EnsureSuccessStatusCode();
                 var result = response.Content.ReadAsStringAsync().Result;
                 return result;
             }
