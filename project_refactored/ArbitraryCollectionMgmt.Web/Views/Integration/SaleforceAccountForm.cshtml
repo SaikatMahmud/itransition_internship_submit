@@ -1,0 +1,43 @@
+﻿<div class="row pt-lg-4">
+    <div class="col-4">
+    </div>
+    <div class="col-4 border border-primary bg-gradient p-4" style="border-radius: 0.3rem;">
+        <div class="text-md-center">
+            <h3 class="text-decoration-underline">Add data into Salesforce</h3>
+        </div>
+        <form method="post">
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">Account Name</label>
+                <input type="text" name="sfAccount.Name" class="form-control" placeholder="full name" value="@Model.Name" required readonly />
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">Email</label>
+                <input type="email" name="sfAccount.Email" class="form-control" placeholder="email" value="@Model.Email" required readonly />
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">Phone</label>
+                <input type="number" name="sfAccount.MobilePhone" class="form-control" placeholder="phone number" required />
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">Address</label>
+                <input type="text" name="sfAccount.MailingStreet" class="form-control" placeholder="write address" required />
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">City</label>
+                <input type="text" name="sfAccount.MailingCity" class="form-control" placeholder="city" required />
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">Country</label>
+                <input type="text" name="sfAccount.MailingCountry" class="form-control" placeholder="country" required />
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success mb-4"><i class="bi bi-send-plus"></i> Add</button>
+            </div>
+        </form>
+
+    </div>
+    <div class="col-4">
+    </div>
+
+</div>
+

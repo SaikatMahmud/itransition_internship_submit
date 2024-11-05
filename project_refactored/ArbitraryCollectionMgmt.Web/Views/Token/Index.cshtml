@@ -1,0 +1,122 @@
+﻿@model IEnumerable<ApiTokenDTO>
+
+<div class="row mx-5">
+    <h2>Api Token</h2>
+    <div class="row mb-1">
+        <div class="col-12">
+            <button class="btn btn-success" id="btnGenerateNew">Generate new</button>
+        </div>
+        <span class="text-muted mt-1"><b>Access point:</b>&nbsp;  /api/user-collection-data/{token}</span>
+    </div>
+    <div class="row pt-3">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Token</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var token in Model)
+                    {
+                        <tr>
+                            <td>@token.Name</td>
+                            <td>@token.TokenKey</td>
+                            @if (token.IsRevoked == true)
+                            {
+                                <td>Revoked</td>
+                            }
+                            else
+                            {
+                                <td>Active</td>
+                            }
+                            <td>@token.CreatedAt</td>
+                            @if (token.IsRevoked == false)
+                            {
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger" id="btnRevoke" onclick="revokeToken(@token.Id)"><i class="bi bi-stop-circle"></i> Revoke</button>
+                                </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#btnGenerateNew').click(function () {
+            generateToken();
+        });
+
+        $('#btnRevoke').click(function (id) {
+            revokeToken(id);
+        });
+
+        function generateToken(){
+            Swal.fire({
+                title: "Give it a name",
+                input: "text",
+                inputLabel: "The token would be valid untill it's revoked",
+                inputPlaceholder: "token name",
+                showCancelButton: true,
+                inputValidator: (inputValue) => {
+                    if (!inputValue) {
+                        return "You need to provide a name!";
+                    }
+                }
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '/generate-api-token',
+                        type: 'POST',
+                        data: { name: result.value },
+                        success: function (response) {
+                            if (response.success) {
+                                window.location.reload();
+                            }
+                            else {
+                                toastr.error(response.msg);
+                            }
+                        },
+                        error: function (error) {
+                            alert("Internal server error!");
+                        }
+                    });
+                }
+            });
+        }
+
+        function revokeToken(id) {
+            $.ajax({
+                url: '/revoke-api-token',
+                type: 'PUT',
+                data: { apiTokenId: id },
+                success: function (response) {
+                    if (response.success) {
+                        window.location.reload();
+                    }
+                    else {
+                        toastr.error("Could not revoke. Server error!");
+                    }
+                },
+                error: function (error) {
+                    alert("Internal server error!");
+                }
+            });
+        }
+
+
+
+    </script>
+}

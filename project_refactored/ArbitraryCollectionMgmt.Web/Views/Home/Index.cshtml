@@ -1,0 +1,92 @@
+﻿@model HomepageVM
+
+<style>
+    #tag-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@yaireo/tagify/dist/tagify.css" type="text/css" />
+
+<h3>Homepage</h3>
+<div>
+    <div class="d-flex flex-column align-items-center mt-3">
+        <h5 class="text-muted text-decoration-underline">Recently added items</h5>
+        @if (Model.Items != null && Model.Items.Count() > 0)
+        {
+            <div style="width: 65%;" class="mx-auto">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Collection</th>
+                            <th>Owner</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td><a href="/item/collection/@item.Collection.CollectionId" style="text-decoration: none">@item.Collection.Name</a></td>
+                                <td><a href="/collection/user/@item.User.UserId" style="text-decoration: none">@item.User.Name</a></td>
+                                <td>
+                                    <button type="button" onclick="location.href='/item/view/@item.ItemId'" class="btn btn-info"><i class="bi bi-file-earmark-richtext"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <span>No data available now!</span>
+        }
+    </div>
+
+
+    <div class="d-flex flex-column align-items-center mt-3">
+        <h5 class="text-muted text-decoration-underline">Top 5 largest collections</h5>
+        @if (Model.Collections != null && Model.Collections.Count() > 0)
+        {
+            <div style="width: 45%;" class="mx-auto">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Collection Name</th>
+                            <th>Owner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var collection in Model.Collections)
+                        {
+                            <tr>
+                                <td><a href="/item/collection/@collection.CollectionId" style="text-decoration: none">@collection.Name</a></td>
+                                <td><a href="/collection/user/@collection.User.UserId" style="text-decoration: none">@collection.User.Name</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <span>No data available now!</span>
+        }
+    </div>
+
+    <div class="d-flex flex-column align-items-center mt-3">
+        <h5 class="text-muted text-decoration-underline">Tags</h5>
+        <input name="tags" value="" class="form-control w-25 mb-2" placeholder="select one below or start typing...">
+        <div id="tag-grid"></div>
+    </div>
+
+</div>
+
+<script src="~/js/homepageTagCloud.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@@yaireo/tagify"></script>

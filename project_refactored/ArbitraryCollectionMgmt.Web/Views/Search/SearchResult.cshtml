@@ -1,0 +1,117 @@
+﻿@model SearchResultDTO
+@{
+    bool isSearchResultEmpty = true;
+}
+<style>
+    .card:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+    }
+</style>
+
+@if (!string.IsNullOrEmpty(ViewBag.SearchTagName))
+{
+    <h3>Items with [@ViewBag.SearchTagName]</h3>
+
+}
+else
+{
+    <h3>Search result for "@ViewBag.SearchQuery"</h3>
+}
+
+
+<div>
+    @* ***********************  Items  ******************@
+    @if (Model.Items != null && Model.Items.Count() > 0)
+    {
+        isSearchResultEmpty = false;
+        <div class="d-flex flex-column align-items-center mt-3">
+            <h6 class="text-muted">Item(s)</h6>
+            @foreach (var item in Model.Items)
+            {
+                <a href="/item/view/@item.ItemId" class="card w-25 mb-2" style="text-decoration: none">
+                    <div class="card-body">
+                        <div class="card-body">
+                            <span class="fw-bold fs-6 lh-sm">@item.Name</span>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+
+
+    @* ***********************  CustomValue  ******************@
+    @if (Model.CustomValues != null && Model.CustomValues.Count() > 0)
+    {
+        isSearchResultEmpty = false;
+        <div class="d-flex flex-column align-items-center mt-3">
+            <h6 class="text-muted">Item's matched details</h6>
+            @foreach (var customValue in Model.CustomValues)
+            {
+                <a href="/item/view/@customValue.Item.ItemId" class="card w-40 mb-2" style="text-decoration: none">
+                    <div class="card-body">
+                        <div class="card-body">
+                            <span class="fw-bold fs-6 lh-sm">@customValue.Item.Name</span><br />
+                            <span class="lh-sm">@customValue.FieldValue</span>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+
+
+    @* ***********************  Comments  ******************@
+    @if (!string.IsNullOrEmpty(@Accessor.HttpContext.Request.Cookies["role"]?.ToString()))
+    {
+        @if (Model.Comments != null && Model.Comments.Count() > 0)
+        {
+            isSearchResultEmpty = false;
+            <div class="d-flex flex-column align-items-center mt-3">
+                <h6 class="text-muted">Item's matched comment(s)</h6>
+                @foreach (var comment in Model.Comments)
+                {
+                    <a href="/item/view/@comment.Item.ItemId" class="card w-50 mb-2" style="text-decoration: none">
+                        <div class="card-body">
+                            <div class="card-body">
+                                <span class="fw-bold fs-6 lh-sm">@comment.Item.Name</span>
+                                <hr class="my-1" />
+                                <span class="lh-sm">@comment.CommentText</span>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+    }
+
+    @* ***********************  Collection  ******************@
+    @if (Model.Collections != null && Model.Collections.Count() > 0)
+    {
+        isSearchResultEmpty = false;
+        <div class="d-flex flex-column align-items-center mt-3">
+            <h6 class="text-muted">Collection(s)</h6>
+            @foreach (var collection in Model.Collections)
+            {
+                <a href="/item/collection/@collection.CollectionId" class="card w-25 mb-2" style="text-decoration: none">
+                    <div class="card-body">
+                        <div class="card-body">
+                            <span class="fw-bold fs-6 lh-sm">@collection.Name</span><br />
+                            @* <span class="lh-sm">owner name</span> *@
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+
+    @if (isSearchResultEmpty)
+    {
+        <div class="d-flex flex-column align-items-center mt-lg-4">
+            <h5 class="text-muted">No matching result found!</h5>
+        </div>
+    }
+
+</div>
+

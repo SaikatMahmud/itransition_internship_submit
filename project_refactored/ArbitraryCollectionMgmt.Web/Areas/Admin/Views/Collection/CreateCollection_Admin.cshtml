@@ -1,0 +1,88 @@
+﻿@model CollectionCustomAttributeDTO
+
+<form asp-action="CreateCollection_Admin" enctype="multipart/form-data">
+    <input type='hidden' name='collection.UserId' value="@ViewBag.userId" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2>Create new collection</h2>
+            <hr />
+            <div class="mb-3 col-3">
+                <label asp-for="Name" class="control-label fw-bold text-muted"></label>
+                <input name="collection.Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-2">
+                <label class="fw-bold text-muted">Category</label>
+                <select id="CategoryId" name="collection.CategoryId" asp-items="ViewBag.catList" class="form-select" required>
+                    <option disabled selected value="">Select Category</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 col-3 ms-4">
+                <label class="fw-bold text-muted">Upload an image</label>
+                <input type="file" id="fileUpload" name="collectionImage" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="control-label fw-bold text-muted"></label>
+                <textarea name="collection.Description" class="form-control"></textarea>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <table id="custom-attributes-tbl" class="table" style="width: 50%;">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;"></th>
+                            <th style="text-align: center;"></th>
+                            <th style="text-align: center;"></th>
+                            <th style="text-align: center;" style="width: 20%;"></th>
+                            <th style="text-align: center;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="add-attribute-row">
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+            </div>
+            <div class="col-5 d-flex align-items-center">
+                <button type="button" style="margin: 0 auto; display: block;" class="btn btn-secondary btn-sm" id="add-attribute-btn"><i class="bi bi-plus-circle"></i> Add custom attribute</button>
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Create" class="btn btn-success" />
+</form>
+
+
+
+@section Scripts {
+    <script src="~/js/collection/tblCustomAttribute.js"></script>
+    <script>
+        $(function () {
+            $.fn.filepond.registerPlugin(FilePondPluginImagePreview, FilePondPluginFileValidateType);
+            $('#fileUpload').filepond({
+                name: "collectionImage",
+                allowMultiple: false,
+                storeAsFile: true,
+                acceptedFileTypes: ['image/*'],
+            });
+        });
+    </script>
+
+    <script>
+        window.fieldList = @Html.Raw(Json.Serialize(ViewBag.fieldList));
+        window.attributeIndex = 0;
+    </script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount linkchecker',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap',
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

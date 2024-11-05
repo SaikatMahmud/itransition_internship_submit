@@ -1,0 +1,162 @@
+﻿@model CollectionCustomAttributeDTO
+@{
+    int attributeCount = Model.CustomAttributes.Count();
+    int attributeIndex = 0;
+}
+<form asp-action="EditCollection_Admin" enctype="multipart/form-data">
+    <input type='hidden' name='collection.CollectionId' value="@Model.CollectionId" />
+    <input type='hidden' name='existingImageUrl' value="@Model.ImageUrl" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2>Edit collection</h2>
+            <hr />
+            <div class="mb-3 col-3">
+                <label asp-for="Name" class="control-label fw-bold text-muted"></label>
+                <input name="collection.Name" asp-for="Name" class="form-control" required/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-2">
+                <label class="fw-bold text-muted">Category</label>
+                <select id="CategoryId" name="collection.CategoryId" asp-for="CategoryId" asp-items="ViewBag.catList" class="form-select" required>
+                    <option disabled selected value="">Select Category</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-3 ms-4">
+                <label class="fw-bold text-muted">Upload an image</label>
+                <input type="file" id="fileUpload" name="collectionImage" />
+            </div>
+
+            <div class="mb-3 col-3 ms-5">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <span id="imageSpan">
+                        <label class="fw-bold text-muted">Current image</label><br />
+                        <img src="@Model.ImageUrl" width="110" height="130" class="rounded" />
+                        <button type="button" class="btn btn-danger btn-sm close-btn" onclick="DeleteImageUrl(@Model.CollectionId)"><i class="bi bi-trash-fill"></i></button>
+                    </span>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="control-label fw-bold text-muted"></label>
+                <textarea name="collection.Description" asp-for="Description" class="form-control"></textarea>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <table id="custom-attributes-tbl" class="table" style="width: 50%;">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;"></th>
+                            <th style="text-align: center;"></th>
+                            <th style="text-align: center;"></th>
+                            <th style="text-align: center;" style="width: 20%;"></th>
+                            <th style="text-align: center;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="add-attribute-row">
+                        @if (Model.CustomAttributes != null && Model.CustomAttributes.Count() > 0)
+                        {
+                            foreach (var field in Model.CustomAttributes)
+                            {
+                                <tr id="attribute-@field.Id">
+                                    <td>
+                                        <input type='hidden' name='collection.CustomAttributes.index' value="@attributeIndex" />
+                                        <input type='hidden' name='collection.CustomAttributes[@attributeIndex].Id' value="@field.Id" />
+                                    </td>
+                                    <td>
+                                        <label class="fw-bold text-muted">Field</label>
+                                    </td>
+                                    <td>
+                                        <input name='collection.CustomAttributes[@attributeIndex].FieldName' type='text' class='form-control' value="@field.FieldName" maxlength="25" required />
+                                    </td>
+                                    <td>
+                                        <select name="collection.CustomAttributes[@attributeIndex].FieldType" class="form-select" asp-for="@field.FieldType" asp-items="ViewBag.fieldList" required>
+                                            <option value="" disabled selected>Select Type</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm close-btn" id="@field.Id"><i class="bi bi-dash-circle"></i></button>
+                                    </td>
+                                </tr>
+                                attributeIndex++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+            </div>
+            <div class="col-5 d-flex align-items-center">
+                <button type="button" style="margin: 0 auto; display: block;" class="btn btn-secondary btn-sm" id="add-attribute-btn"><i class="bi bi-plus-circle"></i> Add custom attribute</button>
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Save" class="btn btn-success" />
+</form>
+
+
+@section Scripts {
+    <script src="~/js/collection/tblCustomAttribute.js"></script>
+    <script>
+        $(function () {
+            $.fn.filepond.registerPlugin(FilePondPluginImagePreview, FilePondPluginFileValidateType);
+            $('#fileUpload').filepond({
+                name: "collectionImage",
+                allowMultiple: false,
+                storeAsFile: true,
+                acceptedFileTypes: ['image/*'],
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteImageUrl(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Image will be removed permanently!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/collection/remove-image/' + id,
+                        type: 'PUT',
+                        success: function (response) {
+                            debugger;
+                            if (response.success) {
+                                toastr.success("Image deleted!");
+                                $('#imageSpan').remove();
+                            }
+                            else {
+                                toastr.error("Server error!");
+                            }
+                        },
+                        error: function (error) {
+                            debugger;
+                            alert("Internal server error!");
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
+    <script>
+        window.fieldList = @Html.Raw(Json.Serialize(ViewBag.fieldList));
+        window.attributeIndex = @attributeCount;
+    </script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount linkchecker',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap',
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

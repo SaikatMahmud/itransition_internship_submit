@@ -1,0 +1,41 @@
+﻿<body onload="loadItemOfCollection_Admin()">
+    <div class="col-12 mb-2">
+        <div class="row">
+            <div class="col-auto">
+                @if (!string.IsNullOrEmpty(ViewBag.collection.ImageUrl))
+                {
+                    <img src="@ViewBag.collection.ImageUrl" width="110" height="130" class="rounded" />
+                }
+                else
+                {
+                    <img src="https://placehold.co/110x130" width="110" height="130" class="rounded" />
+                }
+            </div>
+            <div class="col-9">
+                <h2>Items from @ViewBag.collection.Name collection</h2>
+                <span class="text-muted">@Html.Raw(ViewBag.collection.Description)</span>
+            </div>
+            <div class="col-auto">
+                <a asp-controller="Item" asp-action="CreateItem_Admin" asp-route-collectionId="@ViewBag.collection.CollectionId" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add new item</a>
+            </div>
+        </div>
+    </div>
+    <div>
+    </div>
+
+
+    <div style="width: 70%;" class="mx-auto">
+        <table id="tblData" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Item Id</th>
+                    <th>Item Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+</body>
+
+<script src="~/js/item/admin/loadItemOfCollection_Admin.js"></script>
