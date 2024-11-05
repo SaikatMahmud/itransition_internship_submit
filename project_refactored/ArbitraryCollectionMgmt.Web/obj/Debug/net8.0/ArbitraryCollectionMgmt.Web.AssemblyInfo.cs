@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArbitraryCollectionMgmt.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60e33b4f179360daef3d92935340a86378ca3aaa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5be64f9ee12f93d6cd5ff458dcf58e3977213bcd")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArbitraryCollectionMgmt.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArbitraryCollectionMgmt.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -23,7 +23,10 @@ namespace ArbitraryCollectionMgmt.BLL.MediatorService.CollectionMediator
             public Task<bool> Handle(Request request, CancellationToken cancellationToken)
             {
                 var existingCollection = DataAccess.Collection.Get(c => c.CollectionId == request.obj.CollectionId);
-                if (existingCollection == null) return Task.FromResult(false);
+                if (existingCollection == null)
+                {
+                    return Task.FromResult(false);
+                }
                 existingCollection.Name = request.obj.Name;
                 existingCollection.Description = request.obj.Description;
                 existingCollection.CategoryId = request.obj.CategoryId;

@@ -22,9 +22,15 @@ namespace ArbitraryCollectionMgmt.BLL.MediatorService.CollectionMediator
             public Task<bool> Handle(Request request, CancellationToken cancellationToken)
             {
                 var collection = DataAccess.Collection.Get(c => c.CollectionId == request.collectionId);
-                if (collection == null) return Task.FromResult(false);
+                if (collection == null)
+                {
+                    return Task.FromResult(false);
+                }
                 var isRemoved = ImageControlService.DeleteCollectionImage(collection.ImageUrl);
-                if (!isRemoved) return Task.FromResult(false);
+                if (!isRemoved)
+                {
+                    return Task.FromResult(false);
+                }
                 collection.ImageUrl = string.Empty;
                 return Task.FromResult(DataAccess.Collection.Update(collection));
             }

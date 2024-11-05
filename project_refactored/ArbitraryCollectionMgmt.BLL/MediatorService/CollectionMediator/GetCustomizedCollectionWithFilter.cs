@@ -3,6 +3,7 @@ using ArbitraryCollectionMgmt.DAL.Models;
 using ArbitraryCollectionMgmt.DAL.UnitOfWork;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
+using LinqKit;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ArbitraryCollectionMgmt.BLL.MediatorService.CollectionMediator
             public int TotalCount { get; set; }
             public int FilteredCount { get; set; }
         }
-        public record Request(Expression<Func<CollectionDTO, bool>> filter, string searchQuery, int skip, int take, string orderColumn, string orderDirection, string? properties = null) : IRequest<CollectionResponse>;
+        public record Request(int categoryId, Expression<Func<CollectionDTO, bool>> filter, string searchQuery, int skip, int take, string orderColumn, string orderDirection, string? properties = null) : IRequest<CollectionResponse>;
         public class Handler : IRequestHandler<Request, CollectionResponse>
         {
             private readonly IUnitOfWork DataAccess;
@@ -40,6 +41,10 @@ namespace ArbitraryCollectionMgmt.BLL.MediatorService.CollectionMediator
                 });
                 var mapper = new Mapper(cfg);
                 var productFilter = mapper.MapExpression<Expression<Func<Collection, bool>>>(request.filter);
+                if(request.categoryId != 0)
+                {
+                    productFilter = productFilter.And(x => x.CategoryId == request.categoryId);
+                }
                 var data = DataAccess.Collection.GetAllSortFilterPage(productFilter, request.searchQuery, request.skip, request.take, request.orderColumn, request.orderDirection, request.properties);
                 if (data.Item1 != null)
                 {

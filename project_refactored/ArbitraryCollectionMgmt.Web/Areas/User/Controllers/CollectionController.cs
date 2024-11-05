@@ -51,16 +51,8 @@ namespace ArbitraryCollectionMgmt.Web.Areas.User.Controllers
         {
             int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
             dynamic result;
-            if (categoryId == 0)
-            {
-                //result = collectionService.GetCustomized(c => c.UserId == userId, search, start, length, orderColumn, orderDirection, out totalCount, out filteredCount, "Category");
-                result = _mediator.Send(new GetCustomizedCollectionWithFilter.Request(c => c.UserId == userId, search, start, length, orderColumn, orderDirection, "Category")).Result;
-            }
-            else
-            {
-                result = _mediator.Send(new GetCustomizedCollectionWithFilter.Request(c => c.UserId == userId && c.CategoryId == categoryId, search, start, length, orderColumn, orderDirection, "Category")).Result;
-            }
-
+            //result = collectionService.GetCustomized(c => c.UserId == userId, search, start, length, orderColumn, orderDirection, out totalCount, out filteredCount, "Category");
+            result = _mediator.Send(new GetCustomizedCollectionWithFilter.Request(categoryId, c => c.UserId == userId, search, start, length, orderColumn, orderDirection, "Category")).Result;
             var response = new
             {
                 draw = draw,
@@ -184,7 +176,7 @@ namespace ArbitraryCollectionMgmt.Web.Areas.User.Controllers
                 var imageUrl = ImageControlService.UploadCollectionImage(collectionImage, existingImageUrl);
                 collection.ImageUrl = imageUrl;
             }
-            var result =  _mediator.Send(new UpdateCollection.Request(collection)).Result;
+            var result = _mediator.Send(new UpdateCollection.Request(collection)).Result;
             if (result)
             {
                 TempData["success"] = "Collection updated successfully!";

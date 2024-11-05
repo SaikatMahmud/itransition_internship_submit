@@ -39,7 +39,7 @@ namespace ArbitraryCollectionMgmt.BLL.MediatorService.CollectionMediator
                 {
                     return Task.FromResult(mapper.Map<CollectionCustomAttributeDTO>(data));
                 }
-                return null;
+                return Task.FromResult<CollectionCustomAttributeDTO>(null);
             }
         }
     }

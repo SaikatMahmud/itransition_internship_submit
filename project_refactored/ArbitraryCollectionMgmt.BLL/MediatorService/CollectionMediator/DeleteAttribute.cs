@@ -21,7 +21,10 @@ namespace ArbitraryCollectionMgmt.BLL.MediatorService.CollectionMediator
             public Task<bool> Handle(Request request, CancellationToken cancellationToken)
             {
                 var attribute = DataAccess.CustomAttribute.Get(a => a.Id == request.attributeId);
-                if (attribute == null) return Task.FromResult(false);
+                if (attribute == null)
+                {
+                    return Task.FromResult(false);
+                }
                 return Task.FromResult(DataAccess.CustomAttribute.Delete(attribute));
             }
         }

@@ -22,7 +22,10 @@ namespace ArbitraryCollectionMgmt.BLL.MediatorService.CollectionMediator
             public Task<bool> Handle(Request request, CancellationToken cancellationToken)
             {
                 var collection = DataAccess.Collection.Get(c => c.CollectionId == request.collectionId);
-                if (collection == null) return Task.FromResult(false);
+                if (collection == null)
+                {
+                    return Task.FromResult(false);
+                }
                 var result = DataAccess.Collection.Delete(collection);
                 var items = DataAccess.Item.GetAll(i => i.CollectionId == request.collectionId);
                 if (items != null)

@@ -49,7 +49,7 @@ namespace ArbitraryCollectionMgmt.BLL.MediatorService.CollectionMediator
                         FilteredCount = data.Item3
                     };
                 }
-                return null;
+                return new CollectionResponse();
             }
         }
     }
