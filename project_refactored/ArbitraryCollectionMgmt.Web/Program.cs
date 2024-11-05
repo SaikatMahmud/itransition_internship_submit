@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ArbitraryCollectionMgmt.BLL.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using ArbitraryCollectionMgmt.Web.Clients;
+using ArbitraryCollectionMgmt.BLL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IBusinessService, BusinessService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
+#region MediatR
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(MediatREntryPoint).Assembly));
+
+
+
+
+#endregion
 
 builder.Services.AddSingleton<SalesforceClient>();
 builder.Services.AddSingleton<JiraClient>();

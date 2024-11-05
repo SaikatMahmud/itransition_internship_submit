@@ -1,8 +1,10 @@
 ﻿using ArbitraryCollectionMgmt.Auth;
 using ArbitraryCollectionMgmt.BLL.DTOs;
+using ArbitraryCollectionMgmt.BLL.MediatorService.CollectionMediator;
 using ArbitraryCollectionMgmt.BLL.ServiceAccess;
 using ArbitraryCollectionMgmt.BLL.Services;
 using ArbitraryCollectionMgmt.Web.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -15,14 +17,16 @@ namespace ArbitraryCollectionMgmt.Web.Areas.User.Controllers
     [UserAccess]
     public class CollectionController : Controller
     {
-        private CollectionService collectionService;
+        //private CollectionService collectionService;
         private CategoryService categoryService;
         private UserService userService;
-        public CollectionController(IBusinessService serviceAccess)
+        private readonly IMediator _mediator;
+        public CollectionController(IBusinessService serviceAccess, IMediator mediator)
         {
-            collectionService = serviceAccess.CollectionService;
+            //collectionService = serviceAccess.CollectionService;
             categoryService = serviceAccess.CategoryService;
             userService = serviceAccess.UserService;
+            _mediator = mediator;
         }
 
 
@@ -46,24 +50,23 @@ namespace ArbitraryCollectionMgmt.Web.Areas.User.Controllers
         public JsonResult GetMyCollection(int categoryId, int draw, int start, int length, string search, string orderColumn, string orderDirection)
         {
             int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            int totalCount = 0;
-            int filteredCount = 0;
-            List<CollectionDTO> result;
+            dynamic result;
             if (categoryId == 0)
             {
-                result = collectionService.GetCustomized(c => c.UserId == userId, search, start, length, orderColumn, orderDirection, out totalCount, out filteredCount, "Category");
+                //result = collectionService.GetCustomized(c => c.UserId == userId, search, start, length, orderColumn, orderDirection, out totalCount, out filteredCount, "Category");
+                result = _mediator.Send(new GetCustomizedCollectionWithFilter.Request(c => c.UserId == userId, search, start, length, orderColumn, orderDirection, "Category")).Result;
             }
             else
             {
-                result = collectionService.GetCustomized(c => c.UserId == userId && c.CategoryId == categoryId, search, start, length, orderColumn, orderDirection, out totalCount, out filteredCount, "Category");
+                result = _mediator.Send(new GetCustomizedCollectionWithFilter.Request(c => c.UserId == userId && c.CategoryId == categoryId, search, start, length, orderColumn, orderDirection, "Category")).Result;
             }
 
             var response = new
             {
                 draw = draw,
-                recordsTotal = totalCount,
-                recordsFiltered = filteredCount,
-                data = result
+                recordsTotal = result.TotalCount,
+                recordsFiltered = result.FilteredCount,
+                data = result.Collections
             };
             return Json(response);
         }
@@ -113,7 +116,8 @@ namespace ArbitraryCollectionMgmt.Web.Areas.User.Controllers
                 var imageUrl = ImageControlService.UploadCollectionImage(collectionImage);
                 collection.ImageUrl = imageUrl;
             }
-            var result = collectionService.Create(userId, collection);
+            // var result = collectionService.Create(userId, collection);
+            var result = _mediator.Send(new CreateCollection.Request(userId, collection)).Result;
             if (result)
             {
                 TempData["success"] = "Collection created successfully!";
@@ -128,7 +132,8 @@ namespace ArbitraryCollectionMgmt.Web.Areas.User.Controllers
         public IActionResult EditMyCollection(int collectionId)
         {
             int userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            var collection = collectionService.Get(c => c.CollectionId == collectionId, "CustomAttributes");
+            //var collection = collectionService.Get(c => c.CollectionId == collectionId, "CustomAttributes");
+            var collection = _mediator.Send(new GetCollection.Request(c => c.CollectionId == collectionId, "CustomAttributes")).Result;
             if (collection == null)
             {
                 TempData["error"] = "Collection not found!";
@@ -179,7 +184,7 @@ namespace ArbitraryCollectionMgmt.Web.Areas.User.Controllers
                 var imageUrl = ImageControlService.UploadCollectionImage(collectionImage, existingImageUrl);
                 collection.ImageUrl = imageUrl;
             }
-            var result = collectionService.Update(collection);
+            var result =  _mediator.Send(new UpdateCollection.Request(collection)).Result;
             if (result)
             {
                 TempData["success"] = "Collection updated successfully!";
@@ -197,7 +202,7 @@ namespace ArbitraryCollectionMgmt.Web.Areas.User.Controllers
         [Route("collection/delete/{collectionId}")]
         public IActionResult Delete(int collectionId)
         {
-            var result = collectionService.Delete(collectionId);
+            var result = _mediator.Send(new DeleteCollection.Request(collectionId)).Result;
             if (result)
             {
                 return Json(new { success = true, msg = "Collection deleted!" });
@@ -209,7 +214,7 @@ namespace ArbitraryCollectionMgmt.Web.Areas.User.Controllers
         [Route("collection/remove-image/{collectionId}")]
         public IActionResult RemoveImage(int collectionId)
         {
-            var result = collectionService.RemoveImageUrl(collectionId);
+            var result = _mediator.Send(new RemoveImageUrl.Request(collectionId)).Result;
             if (result)
             {
                 return Json(new { success = true });
@@ -221,7 +226,7 @@ namespace ArbitraryCollectionMgmt.Web.Areas.User.Controllers
         [Route("collection/attribute/delete/{attributeId}")]
         public IActionResult DeleteAttribute(int attributeId)
         {
-            var result = collectionService.DeleteAttribute(attributeId);
+            var result = _mediator.Send(new DeleteAttribute.Request(attributeId)).Result;
             if (result)
             {
                 return Json(new { success = true });

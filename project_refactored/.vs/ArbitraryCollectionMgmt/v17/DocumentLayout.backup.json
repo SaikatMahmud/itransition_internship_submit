@@ -1,0 +1,59 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\s2.mahmud\\My Data\\GitHub Personal Repo\\itransition_internship_submit\\project_refactored\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A147ED87-437E-4D8F-AF33-D6E1228EAC73}|ArbitraryCollectionMgmt.Web\\ArbitraryCollectionMgmt.Web.csproj|c:\\users\\s2.mahmud\\my data\\github personal repo\\itransition_internship_submit\\project_refactored\\arbitrarycollectionmgmt.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A147ED87-437E-4D8F-AF33-D6E1228EAC73}|ArbitraryCollectionMgmt.Web\\ArbitraryCollectionMgmt.Web.csproj|solutionrelative:arbitrarycollectionmgmt.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 181,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\s2.mahmud\\My Data\\GitHub Personal Repo\\itransition_internship_submit\\project_refactored\\ArbitraryCollectionMgmt.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "ArbitraryCollectionMgmt.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\s2.mahmud\\My Data\\GitHub Personal Repo\\itransition_internship_submit\\project_refactored\\ArbitraryCollectionMgmt.Web\\appsettings.json",
+              "RelativeToolTip": "ArbitraryCollectionMgmt.Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-05T13:24:15.223Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{797f5b3d-853a-4854-a9f2-c488bac2661b}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

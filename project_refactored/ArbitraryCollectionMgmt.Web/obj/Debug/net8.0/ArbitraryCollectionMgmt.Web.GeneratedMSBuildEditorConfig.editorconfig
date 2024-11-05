@@ -1,0 +1,195 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ArbitraryCollectionMgmt.Web
+build_property.RootNamespace = ArbitraryCollectionMgmt.Web
+build_property.ProjectDir = C:\Users\s2.mahmud\My Data\GitHub Personal Repo\itransition_internship_submit\project_refactored\ArbitraryCollectionMgmt.Web\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = C:\Users\s2.mahmud\My Data\GitHub Personal Repo\itransition_internship_submit\project_refactored\ArbitraryCollectionMgmt.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Admin/Views/Collection/AllCollection_Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29sbGVjdGlvblxBbGxDb2xsZWN0aW9uX0FkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Admin/Views/Collection/CollectionOfUser_Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29sbGVjdGlvblxDb2xsZWN0aW9uT2ZVc2VyX0FkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Admin/Views/Collection/CreateCollection_Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29sbGVjdGlvblxDcmVhdGVDb2xsZWN0aW9uX0FkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Admin/Views/Collection/EditCollection_Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29sbGVjdGlvblxFZGl0Q29sbGVjdGlvbl9BZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Admin/Views/Item/AllItem_Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSXRlbVxBbGxJdGVtX0FkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Admin/Views/Item/CreateItem_Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSXRlbVxDcmVhdGVJdGVtX0FkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Admin/Views/Item/EditItem_Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSXRlbVxFZGl0SXRlbV9BZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Admin/Views/Item/ItemOfCollection_Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSXRlbVxJdGVtT2ZDb2xsZWN0aW9uX0FkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Guest/Views/Collection/AllCollection_Guest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR3Vlc3RcVmlld3NcQ29sbGVjdGlvblxBbGxDb2xsZWN0aW9uX0d1ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Guest/Views/Collection/CollectionOfUser_Guest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR3Vlc3RcVmlld3NcQ29sbGVjdGlvblxDb2xsZWN0aW9uT2ZVc2VyX0d1ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Guest/Views/Item/AllItem_Guest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR3Vlc3RcVmlld3NcSXRlbVxBbGxJdGVtX0d1ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Guest/Views/Item/ItemOfCollection_Guest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR3Vlc3RcVmlld3NcSXRlbVxJdGVtT2ZDb2xsZWN0aW9uX0d1ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Guest/Views/Item/ViewItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR3Vlc3RcVmlld3NcSXRlbVxWaWV3SXRlbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Guest/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR3Vlc3RcVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/Guest/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR3Vlc3RcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/User/Views/Collection/CreateMyCollection.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xDb2xsZWN0aW9uXENyZWF0ZU15Q29sbGVjdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/User/Views/Collection/EditMyCollection.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xDb2xsZWN0aW9uXEVkaXRNeUNvbGxlY3Rpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/User/Views/Collection/MyCollection.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xDb2xsZWN0aW9uXE15Q29sbGVjdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/User/Views/Item/CreateMyItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xJdGVtXENyZWF0ZU15SXRlbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/User/Views/Item/EditMyItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xJdGVtXEVkaXRNeUl0ZW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/User/Views/Item/MyAllItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xJdGVtXE15QWxsSXRlbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/User/Views/Item/MyItemOfCollection.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xJdGVtXE15SXRlbU9mQ29sbGVjdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/User/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Areas/User/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Auth/Registration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3RyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Integration/JiraTicketForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWdyYXRpb25cSmlyYVRpY2tldEZvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Integration/MyTicketList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWdyYXRpb25cTXlUaWNrZXRMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Integration/SaleforceAccountForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWdyYXRpb25cU2FsZWZvcmNlQWNjb3VudEZvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Search/SearchResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhcmNoXFNlYXJjaFJlc3VsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Shared/_Notification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Token/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9rZW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/User/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/s2.mahmud/My Data/GitHub Personal Repo/itransition_internship_submit/project_refactored/ArbitraryCollectionMgmt.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-f3xiquoq6c
