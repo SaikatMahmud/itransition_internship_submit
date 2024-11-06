@@ -6,12 +6,14 @@ using ArbitraryCollectionMgmt.BLL.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using ArbitraryCollectionMgmt.Web.Clients;
 using ArbitraryCollectionMgmt.BLL;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using ArbitraryCollectionMgmt.BLL.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
