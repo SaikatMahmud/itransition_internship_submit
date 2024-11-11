@@ -1,0 +1,40 @@
+﻿@model UserRegistrationVM
+<div class="row pt-lg-4">
+    <div class="col-4">
+    </div>
+    <div class="col-4 bg-light">
+        <div class="text-md-center">
+            <h3>User Registration</h3>
+        </div>
+        <form method="post">
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">Name</label>
+                <input type="text" asp-for="Name" class="form-control" placeholder="full name" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">Email</label>
+                <input type="email" asp-for="Email" class="form-control" placeholder="email" required/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold">Password</label>
+                <input type="password" asp-for="Password" class="form-control" placeholder="password" required/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+            </div>
+
+            <input type="submit" value="Signup" class="btn btn-info mb-4" />
+
+        </form>
+        <div class="text-center">
+            <p>Already registered? <a href="/login">Login</a></p>
+        </div>
+    </div>
+    <div class="col-4">
+    </div>
+
+</div>
+

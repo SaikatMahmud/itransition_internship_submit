@@ -1,0 +1,12 @@
+{
+  "login": "লগইন",
+  "email": "ইমেইল",
+  "password": "পাসওয়ার্ড",
+  "not_a_user": "নতুন ব্যবহারকারী?",
+  "register": "নিবন্ধন করুন",
+
+  "user_registration": "ব্যবহারকারী নিবন্ধন",
+  "name": "নাম",
+  "signup": "সাইনআপ",
+  "already_registered": "ইতিমধ্যে নিবন্ধিত?"
+}

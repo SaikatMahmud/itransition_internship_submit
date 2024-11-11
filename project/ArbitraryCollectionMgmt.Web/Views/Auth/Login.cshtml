@@ -1,0 +1,30 @@
+﻿@model LoginVM
+<div class="row pt-lg-5">
+    <div class="col-4">
+    </div>
+    <div class="col-4 border border-primary bg-gradient p-4" style="border-radius: 0.3rem;">
+        <div class="text-md-center">
+            @* <h3 data-i18n="login">Login <i class="bi bi-door-open"></i></h3> *@
+            <h3><i class="bi bi-door-open"></i> <span data-i18n="login"></span></h3>
+        </div>
+        <form method="post">
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold" data-i18n="email"></label>
+                <input type="text" asp-for="Email" class="form-control" placeholder="email" required />
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold" data-i18n="password"></label>
+                <input type="password" asp-for="Password" class="form-control" placeholder="password" required />
+            </div>
+
+            <input type="submit" data-i18n="login" class="btn btn-info mb-4" />
+
+        </form>
+        <div class="text-center">
+            <p>
+                <span data-i18n="not_a_user"></span>
+                <a href="/register"><span data-i18n="register"></span></a>
+            </p>
+        </div>
+    </div>
+</div>

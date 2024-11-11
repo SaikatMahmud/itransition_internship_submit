@@ -1,0 +1,119 @@
+﻿@model ItemCustomAttributeValueDTO
+@{
+    int attributeIndex = 0;
+}
+<form asp-action="EditItem_Admin">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type='hidden' name='item.ItemId' value="@Model.ItemId" />
+    <input type='hidden' name='item.CollectionId' value="@Model.CollectionId" />
+
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2>Edit item @Model.Name</h2>
+            <hr />
+            <div class="row">
+                <div class="col-4">
+                    <div class="col-8">
+                        <div class="mb-5">
+                            <label class="control-label fw-bold text-muted">Item name</label>
+                            <input type="text" name="item.Name" class="form-control" value="@Model.Name" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2">
+                            <label class="control-label fw-bold text-muted">Tags</label>
+                            <input type="text" class="form-control" id="tagSearchField" maxlength="30" placeholder="(optional) start typing..." />
+                            <div id="selected-tags-name" class="pt-2">
+
+                                @if (ViewBag.ItemTags != null)
+                                {
+                                    @foreach (var tag in ViewBag.ItemTags)
+                                    {
+                                        <span class="badge bg-light text-dark"
+                                              style="border: 1px solid #ccc; padding : 2px 5px; margin : 2px; display : inline-block; border-radius : 3px;">
+                                            @tag.Tag.Name <a href="#" onclick="DeleteItemTag(@tag.ItemTagId, this)">x</a>
+                                        </span>
+                                    }
+
+                                }
+                            </div>
+                            <input type="hidden" id="selected-tag-ids" name="selectedTagIds" />
+                            <input type="hidden" id="unavailable-tags" name="newCreatedTags" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="mb-3">
+                        @if (Model.CustomValues != null && Model.CustomValues.Count() > 0)
+                        {
+                            <label class="control-label fw-bold text-muted">Custom Attributes</label>
+                            <table class="table">
+                                <tbody>
+                                    @foreach (var field in Model.CustomValues)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input type='hidden' name='item.CustomValues.index' value="@attributeIndex" />
+                                                <input type='hidden' name='item.CustomValues[@attributeIndex].Id' value="@field.Id" />
+                                                <input type='hidden' name='item.CustomValues[@attributeIndex].CustomAttributeId' value="@field.CustomAttribute.Id" />
+                                            </td>
+                                            <td>@field.CustomAttribute.FieldName</td>
+                                            <td>
+                                                @if (field.CustomAttribute.FieldType == SD.FieldType.Text)
+                                                {
+                                                    <textarea type="text" name="item.CustomValues[@attributeIndex].FieldValue" class="form-control">@field.FieldValue</textarea>
+                                                }
+                                                else if (field.CustomAttribute.FieldType == SD.FieldType.Number)
+                                                {
+                                                    <input type="number" name="item.CustomValues[@attributeIndex].FieldValue" class="form-control" value="@field.FieldValue" />
+                                                }
+                                                else if (field.CustomAttribute.FieldType == SD.FieldType.Single_line_text)
+                                                {
+                                                    <input type="text" name="item.CustomValues[@attributeIndex].FieldValue" placeholder="short text" maxlength="50" class="form-control" value="@field.FieldValue" />
+                                                }
+                                                else if (field.CustomAttribute.FieldType == SD.FieldType.Date)
+                                                {
+                                                    if (DateTime.TryParse(field.FieldValue, out DateTime dateTime))
+                                                    {
+                                                        <input type="date" name="item.CustomValues[@attributeIndex].FieldValue" class="form-control" value="@dateTime.ToString("yyyy-MM-dd")" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="date" name="item.CustomValues[@attributeIndex].FieldValue" class="form-control" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" name="item.CustomValues[@attributeIndex].FieldValue" value="1" class="form-check-input" @(field.FieldValue == "1" ? "checked" : "") />
+                                                    <input type="hidden" name="item.CustomValues[@attributeIndex].FieldValue" value="0" class="form-check-input" />
+                                                }
+                                            </td>
+                                        </tr>
+                                        attributeIndex++;
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Save" class="btn btn-success" />
+</form>
+
+
+
+<script src="~/js/item/manageItemTags.js"></script>
+@section Scripts {
+   
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount linkchecker',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap',
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

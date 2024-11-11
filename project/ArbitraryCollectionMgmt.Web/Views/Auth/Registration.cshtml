@@ -1,0 +1,40 @@
+﻿@model UserRegistrationVM
+<div class="row pt-lg-4">
+    <div class="col-4">
+    </div>
+    <div class="col-4 border border-primary bg-gradient p-4" style="border-radius: 0.3rem;">
+        <div class="text-md-center">
+            <h3><i class="bi bi-person-vcard"></i> <span data-i18n="user_registration"></span></h3>
+        </div>
+        <form method="post">
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold" data-i18n="name"></label>
+                <input type="text" asp-for="Name" class="form-control" placeholder="full name" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold" data-i18n="email"></label>
+                <input type="email" asp-for="Email" class="form-control" placeholder="email" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+            </div>
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="fw-bold" data-i18n="password"></label>
+                <input type="password" asp-for="Password" class="form-control" placeholder="password" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+            </div>
+
+            <input type="submit" data-i18n="signup" class="btn btn-info mb-4" />
+
+        </form>
+        <div class="text-center">
+            <p><span data-i18n="already_registered"></span> <a href="/login"><span data-i18n="login"></span></a></p>
+        </div>
+    </div>
+    <div class="col-4">
+    </div>
+
+</div>
+
